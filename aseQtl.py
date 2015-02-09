@@ -3,7 +3,6 @@ import scipy.stats as ss
 import sys
 from add_exp import add_exp
 import numpy as np
-import anova
 from random import shuffle
 
 if len(sys.argv) != 6:
