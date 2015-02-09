@@ -89,7 +89,7 @@ for file in os.listdir(sys.argv[3]):
 		homMean = float(sum(myAseDict['hom']))/len(myAseDict['hom'])
 		hetMean = float(sum(myAseDict['het']))/len(myAseDict['het'])
 
-		#do the t test
+		#do the association test
 		if sys.argv[5] == "ttest":
 			myTtest = ss.ttest_ind(myAseDict['hom'],myAseDict['het'])
 			tval, pval = myTtest[0],myTtest[1]

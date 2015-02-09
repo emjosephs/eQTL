@@ -1,14 +1,11 @@
 # inputs a snp file and performs an anova
 import os
 import scipy.stats
-from add_exp import add_exp_cqn, add_exp
+from add_exp import add_exp
 import sys
 from random import shuffle
 import numpy
-from myhist import histOne
-import anova
 from calc_HW_deviations import hwe
-from standardize import stz
 
 def myMean(myList):
 	if(len(myList)) == 0:
@@ -17,18 +14,18 @@ def myMean(myList):
 		return(sum(myList)/len(myList))
 
 if len(sys.argv) < 5:
-	print('python eQTL_kruskalwallice.py [exp file] [date] [ht/permute/permuteAll] [snps directory] [permute no]')
+	print('python eQTL_kw_hets.py [exp file] [date] [ht/permute/permuteAll] [snps directory] [permute no]')
 	sys.exit()
 
 date = sys.argv[2]
 
 if sys.argv[3] == "ht":
-	out = open('/cap1/emily.josephs/eQTL/results/'+date+'/eqtl.kw.out.all','w')
+	out = open('../results/'+date+'/eqtl.kw.out.all','w')
 elif sys.argv[3] in ["permute","permuteAll"]:
-	out = open('/cap1/emily.josephs/eQTL/results/'+date+'/permute/eqtl.kw.permute.'+sys.argv[5],'w')
-	cutoffFile = open('/cap1/emily.josephs/eQTL/results/'+date+"/cutoff",'r')
+	out = open('../results/'+date+'/permute/eqtl.kw.permute.'+sys.argv[5],'w')
+	cutoffFile = open('../results/'+date+"/cutoff",'r')
 	cutoff = float(cutoffFile.readline().rstrip())
-err = open('/cap1/emily.josephs/eQTL/results/'+date+'/eqtl.anova.err','w')
+err = open('../results/'+date+'/eqtl.anova.err','w')
 out.write('scaf	pac	locus	freq	fold	h	p	hom1	het	hom2	f(hom1/het/hom2)	hwe_dev\n')
 #generate expression dictionary
 expDict = add_exp(sys.argv[1])
@@ -56,7 +53,7 @@ for file in os.listdir(sys.argv[4]):
 	#read in expression levels from ht_dict
 	if sys.argv[3] =="ht" or int(sys.argv[5]) == 0: #if 0, prints out permute thing for the real data!!
 		pass
-	elif sys.argv[3] in ['permute','premuteAll'] and int(sys.argv[5]) > 0:
+	elif sys.argv[3] in ['permute', 'permuteAll'] and int(sys.argv[5]) > 0:
 		myKeys = expLevels.keys()
 		myValues = expLevels.values()
 		shuffle(myValues)
