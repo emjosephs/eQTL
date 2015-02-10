@@ -26,7 +26,7 @@ elif sys.argv[3] in ["permute","permuteAll"]:
 	cutoffFile = open('../results/'+date+"/cutoff",'r')
 	cutoff = float(cutoffFile.readline().rstrip())
 err = open('../results/'+date+'/eqtl.anova.err','w')
-out.write('scaf	gene	locus	freq	fold	h	p	hom1	het	hom2	f(hom1/het/hom2)	hwe_dev\n')
+out.write('scaf	gene	locus	freq	fold	u	p	hom1	het	hom2	f(hom1/het/hom2)	hwe_dev\n')
 #generate expression dictionary
 expDict = add_exp(sys.argv[1])
 
