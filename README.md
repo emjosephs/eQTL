@@ -26,8 +26,11 @@ The first line of this file will have the gene name and all the individuals. The
 They should look like this:
 
 >20889218	16A	11G	138Q	203A	114I	24F
+>
 >1577995	het	het	het	hom1	hom1	hom1
+>
 >1578031	hom2	hom2	het	het	het	hom2
+>
 >1578033	hom1	hom1	hom1	hom1	hom1	hom1
 
 
