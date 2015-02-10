@@ -6,6 +6,8 @@ I am still in the process of cleaning up and writing READMEs.
 
 The main idea is that you want to keep these scripts in a bin folder and create a "data" folder and a "results" folder adjacent to your scripts folder. Inside the results folder, mmake specific folders for each run -- I do this using dates.
 
+To use these you will need to install SciPy and NumPy
+
 Here are the steps for analysis:
 ## Creating genotype files for each gene: make_snps_files.py
 
