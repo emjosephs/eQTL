@@ -13,7 +13,7 @@ from add_exp import add_exp
 def __main__():
 
 	#check arguments
-	if len(sys.argv) != 7:
+	if len(sys.argv) != 8:
 		print(len(sys.argv))
 		print('python make_snps_files.py [gff file] [vcf file] [scaf_number] [distance] [out directory] [all/noncoding]')
 		sys.exit()
@@ -32,7 +32,7 @@ def __main__():
 
 	#read in the annotation file
 	if sys.argv[6] == 'noncoding':
-		annot = open('/cap1/emily.josephs/genomes/scaffold_'+sys.argv[3]+'.masked.new.downsampled.NCNC.summary','r')
+		annot = open(sys.argv[7],'r')
 		annotDic =  makeAnnotDic(annot)
 
 	# read in the vcf
