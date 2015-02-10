@@ -16,7 +16,7 @@ with the all option, you get all SNPs included in the genotype file and with the
 If you use the noncoding option, you need to add an annotation summary file. If not, you can use a "." here.
 Here is an example of the annotation file: 
 
-> #TYPE   0fold   3
+> <p> #TYPE   0fold   3 <p>
 > #TYPE   stop    8
 > #TYPE   exon    2
 > #TYPE   4fold   4
