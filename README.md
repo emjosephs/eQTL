@@ -11,9 +11,12 @@ Here are the steps for analysis:
 
 usage: python make_snps_files.py [gff file] [vcf file] [scaf_number] [distance] [out directory] [all/noncoding] [annotation summary file]
 
-distance refers to the distance from the TSS or TES that you want to include in the file.
-with the all option, you get all SNPs included in the genotype file and with the noncoding option you only get noncoding SNPs
+Distance refers to the distance from the TSS or TES that you want to include in the file.
+
+With the all option, you get all SNPs included in the genotype file and with the noncoding option you only get noncoding SNPs
+
 If you use the noncoding option, you need to add an annotation summary file. If not, you can use a "." here.
+
 [You can read more about the annotation format here](http://www.genomicconflict.com/wiki/index.php?title=Roberts_Annotations)
 
 
