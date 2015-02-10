@@ -9,18 +9,16 @@ The main idea is that you want to keep these scripts in a bin folder and create 
 Here are the steps for analysis:
 ## Creating genotype files for each gene: make_snps_files.py
 
-usage: python make_snps_files.py [gff file] [vcf file] [scaf_number] [distance] [out directory] [all/noncoding] [annotation summary file]
+### Usage
+> python make_snps_files.py [gff file] [vcf file] [scaf_number] [distance] [out directory] [all/noncoding] [annotation summary file]
 
 You need [PyVCF](https://github.com/jamescasbon/PyVCF) to run this script.
 
 Distance refers to the distance from the TSS or TES that you want to include in the file.
 
-With the all option, you get all SNPs included in the genotype file and with the noncoding option you only get noncoding SNPs
+With the all option, you get all SNPs included in the genotype file and with the noncoding option you only get noncoding SNPs If you use the noncoding option, you need to add an annotation summary file. If not, you can use a "." here. [You can read more about the annotation format here](http://www.genomicconflict.com/wiki/index.php?title=Roberts_Annotations)
 
-If you use the noncoding option, you need to add an annotation summary file. If not, you can use a "." here.
-
-[You can read more about the annotation format here](http://www.genomicconflict.com/wiki/index.php?title=Roberts_Annotations)
-
+### Output
 After running this  you will end up with a bunch of files in your out directory that are named [gene name].[scaffold].snps 
 
 For example: 20889218.scaf1.snps
