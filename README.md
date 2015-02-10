@@ -11,6 +11,8 @@ Here are the steps for analysis:
 
 usage: python make_snps_files.py [gff file] [vcf file] [scaf_number] [distance] [out directory] [all/noncoding] [annotation summary file]
 
+You need [PyVCF](https://github.com/jamescasbon/PyVCF) to run this script.
+
 Distance refers to the distance from the TSS or TES that you want to include in the file.
 
 With the all option, you get all SNPs included in the genotype file and with the noncoding option you only get noncoding SNPs
@@ -34,6 +36,8 @@ They should look like this:
 >1578031	hom2	hom2	het	het	het	hom2
 >
 >1578033	hom1	hom1	hom1	hom1	hom1	hom1
+
+note that hom1 is the reference homozygote
 
 ## Running an eQTL analysis
 
