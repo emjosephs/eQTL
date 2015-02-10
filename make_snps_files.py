@@ -4,8 +4,6 @@
 import vcf
 import sys
 import gff_parse
-from name_switch import makeDict
-import pickle
 import vcf_parse
 from add_exp import add_exp
 
@@ -17,13 +15,6 @@ def __main__():
 		print(len(sys.argv))
 		print('python make_snps_files.py [gff file] [vcf file] [scaf_number] [distance] [out directory] [all/noncoding]')
 		sys.exit()
-
-	#nameDict = makeDict('ind_list_4-2-2014')
-	nameDict= makeDict('ind_lists/ind_list_4-21-2014_nofield')
-	nameList = []
-	for ind in nameDict.values():
-		nameList.append(ind)
-	print(nameList)
 
 	# read in the gff
 	parseOut = gff_parse.gff_parse(sys.argv[1],int(sys.argv[4]))
@@ -37,6 +28,7 @@ def __main__():
 
 	# read in the vcf
 	vcf_reader = vcf.VCFReader( open(sys.argv[2],'r') )
+	nameList = vcf_reader.samples
 	for record in vcf_reader:
 		
 		entry = vcf_parse.vcfParse(record, nameDict)
@@ -72,7 +64,6 @@ def __main__():
 def makeAnnotDic(annot): #makes a dictionary of all sites, 0 if noncoding, 1 if in an exon
 	exonIDs = []
         annotDic = [0]*20000000
-	#exonIDs = [3,2,4]
         for line in annot:
 		ent = line.split()
                 if line[0:5] == "#TYPE" and ent[1] in ['0fold','exon','4fold','stop']:
@@ -85,6 +76,39 @@ def makeAnnotDic(annot): #makes a dictionary of all sites, 0 if noncoding, 1 if 
         			annotDic[pos] = 1
 	return(annotDic)
 
+
+def vcfParse(record, nameList):
+
+        #set up what we'll put into the vcfList
+        listEntry = { 'scaf':0 ,'pos':0, 'genotypes':{} }
+
+        # add SNP info to the list entry
+        listEntry['scaf'] = record.CHROM
+        listEntry['pos'] = record.POS
+
+        for sample in record.samples:
+                #is it in our experiment?
+                if sample.sample in nameList:
+                        sampleName = sample.sample
+                        #did it get called?
+                        if sample['GT']:
+                                sampleGen = sample['GT'][0] + sample['GT'][2]
+                        #assign het hom stuff
+                                if sampleGen == '00':
+                                        sampleH = 'hom1'
+                                elif sampleGen in ['01','10']:
+                                        sampleH = 'het'
+                                elif sampleGen == '11':
+                                        sampleH = 'hom2'
+                        else:
+                                sampleH = "NA" #couldn't be called
+
+                        #add to listEntry
+                        listEntry['genotypes'][sampleName] = sampleH
+                else:
+                        print(sample['name'])
+
+        return(listEntry)
 
 
 if __name__ == "__main__":

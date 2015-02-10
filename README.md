@@ -19,7 +19,9 @@ If you use the noncoding option, you need to add an annotation summary file. If 
 
 [You can read more about the annotation format here](http://www.genomicconflict.com/wiki/index.php?title=Roberts_Annotations)
 
-After running this  you will end up with a bunch of files in [out directory] that are named [gene name].[scaffold].snps 
+After running this  you will end up with a bunch of files in your out directory that are named [gene name].[scaffold].snps 
+
+For example: 20889218.scaf1.snps
 
 The first line of this file will have the gene name and all the individuals. The subsequent lines will have the SNP coordinate and then genotypes at this coordinate.
 
@@ -33,5 +35,5 @@ They should look like this:
 >
 >1578033	hom1	hom1	hom1	hom1	hom1	hom1
 
-
+## Running an eQTL analysis
 
