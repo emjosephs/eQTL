@@ -37,5 +37,37 @@ They should look like this:
 
 note that hom1 is the reference homozygote
 
-## Running an eQTL analysis
+## Running an eQTL analysis: eQTL_kw_hets.py
+
+This script can either run a basic eQTL analysis OR permute your data randomly and then run an eQTL analysis.
+
+### regular eQTL usage
+
+> python eQTL_kw_hets.py [expression file] [date] ht [genotype file directory] 0
+
+the expression file is just a flat file table with your genotypes as columns and genes as rows. For example:
+
+>pac     161A    163J    16A     80G     81J     83Z
+
+>20885617        0.0551181102362 0.105263157895  0.112676056338  0.0809248554913 0.0901639344262 
+
+>20885618        14.7244094488   7.00877192982   8.04929577465   9.53179190751   7.03278688525   
+
+
+instead of date, you can use the folder name within your results folder that you would like your output file to be written in
+
+### permuted eQTL usage
+
+> python eQTL_kw_hets.py [exp file] [date] permute [genotype file directory] [n]
+
+before you run, create a folder called permute in the results folder for these outputs to be written to
+
+n is the number of the permutation that you are running 
+
+
+
+
+
+
+
 
