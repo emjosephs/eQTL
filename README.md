@@ -58,16 +58,31 @@ instead of date, you can use the folder name within your results folder that you
 
 ### permuted eQTL usage
 
-> python eQTL_kw_hets.py [exp file] [date] permute [genotype file directory] [n]
+> python eQTL_kw_hets.py [exp file] [date] permuteAll [genotype file directory] [n]
 
 before you run, create a folder called permute in the results folder for these outputs to be written to
 
 n is the number of the permutation that you are running 
 
+this script will output results from all tests. If you would like to save space by only outputting results that are below a certain significance threshold, create a text file in the dated results folder called cutOff with your cutoff value in it and run:
+
+> python eQTL_kw_hets.py [exp file] [date] permute [genotype file directory] [n]
 
 
+### output
 
+the output files will be tables where each line is a test between SNP and gene expression the fields are:
 
-
-
+1. scaffold
+2. gene name
+3. SNP/locus that was tested
+4. frequency of the reference allele
+5. minor, or folded, allele frequency
+6. U statistic
+7. P value
+8. mean expression level of reference homozygote
+9. mean expression of heterozygote
+10. mean expression of alternate homozygote
+11. frequencies of each genotype
+12. hardy-weinberg deviation p value
 
