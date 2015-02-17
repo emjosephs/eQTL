@@ -88,3 +88,8 @@ the output files will be tables where each line is a test between SNP and gene e
 11. frequencies of each genotype
 12. hardy-weinberg deviation p value
 
+
+
+## quantifying allele-specific expression with aseValuesByGene.py
+
+

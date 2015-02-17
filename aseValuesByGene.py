@@ -2,11 +2,10 @@
 from name_switch import makeDict
 import sys
 import scipy.stats
-from eqtl_genotyper import eqtl_genotype
 import vcf
 
-if len(sys.argv) != 5:
-	print('python aseValuesByGene.py [DNA vcf] [RNA vcf] [out file] [min snps per gene]')
+if len(sys.argv) != 6:
+	print('python aseValuesByGene.py [DNA vcf] [RNA vcf] [out file] [min snps per gene] [list of median expression levels]')
 	sys.exit()
 
 nameDict= makeDict('/cap1/emily.josephs/eQTL/bin/ind_lists/ind_list_5-13-2014_nofield')
@@ -15,7 +14,7 @@ aseDict = {} #keys are (gene) value is dict where keys = ind, vals = list of dif
 med = {} #keys are ebjInd, values are the median.
 indList = nameDict.values()
 #make med
-medList = open('../../eQTL/data/htseq_stampyRNA/medianValues.txt','r')
+medList = open(sys.argv[5],'r')
 for line in medList:
         ent = line.split()
         med[ent[0]] = float(ent[1])
