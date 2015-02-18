@@ -104,4 +104,40 @@ the list of median expression levels is used to normalize the output by sequenci
 ### Output
 The output is a table where each row is a gene and each column is an individual and the values are allele-specific expression. 
 
+## mapping QTLs for allele-specific expression using aseQTL.py
+
+### Regular Usage
+
+> python aseQtl.py [ase file] [date] [genotype file directory] 0 [ttest/utest]
+
+ase file is the output from aseValuesByGene.py
+genotype directory is the directory with all your genotype files made with make_snps_files.py (can be the same as with eQTL_kw_hets.py)
+ttest/utest lets you choose whether to use parametric stats (ttest) or nonparametric stats (utest -- this is recommended)
+
+instead of date you can use the name of the folder in your results directory that you would like your output to be written to
+
+### Permutations
+
+> python aseQtl.py [ase file] [date] [genotype file directory] [n] [ttest/utest]
+
+before you run this, create a folder named "permute" in your results ('date') folder.
+n is the number of the permutation that you are running
+
+This script will only output results that have a p value less than a certain value that you must specific in a file called "cutOff" in your date/results folder.
+
+### Output
+
+The output file will be a table where each line has information for an association test between SNP genotype and allele-specific expression. The fields are:
+
+1. scaffold	
+2. gene name	
+3. SNP/locus that was tested	
+4. sample size of the test (this will vary btw tests)
+5. frequency of the reference allele	
+6. frequency of the minor allele	
+7. mean ase value of homozygotes for the SNP
+8. mean ase value of heterzygotes for the SNP
+9. t or u value
+10. p value
+
 
