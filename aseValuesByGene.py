@@ -1,5 +1,4 @@
 # goal = make a table of ase values for each gene.
-from name_switch import makeDict
 import sys
 import scipy.stats
 import vcf

@@ -92,4 +92,16 @@ the output files will be tables where each line is a test between SNP and gene e
 
 ## quantifying allele-specific expression with aseValuesByGene.py
 
+This script takes in vcfs for RNA and DNA and outputs a table of allele-specific expression values (ie allelic imbalances) for all genes and all individuals using the RNA vcf information at informative heterozygous sites (genotype is inferred from the DNA vcf)
+
+### Usage
+>python aseValuesByGene.py [DNA vcf] [RNA vcf] [out file] [min snps per gene] [list of median expression levels]
+
+min snps per gene is an integer. If set to >1, then it only returns and ASE value if there are more than the specified number of informative heterozygous snps in the gene.
+
+the list of median expression levels is used to normalize the output by sequencing depths. These are median expression levels for all genes from a certain individual. This file should have two columns -- the first column is individual name and the second is median expression.
+
+### Output
+The output is a table where each row is a gene and each column is an individual and the values are allele-specific expression. 
+
 
