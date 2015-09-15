@@ -14,14 +14,12 @@ def main():
 	#randomize it if needed
 	if _args.permute:
 		permDic = makePermDic(_args.permute_no)
-		permDic['150X'] = "150X"	
 		#out = open('/cap1/emily.josephs/ase/results/'+_args.date+'/permute/eqtl.ase.permute.'+_args.permute_no,'w')
-		out = open('/cap2/emily.josephs/ase/results/'+_args.date+'/permute/'+_args.outfile+'.permute.'+_args.permute_no,'w')
-	
+		#out = open('/cap2/emily.josephs/ase/results/'+_args.date+'/permute/'+_args.outfile+'.permute.'+_args.permute_no,'w')
+		out = open(_args.outfile+'.permute.'+_args.permute_no, 'w')	
+
 	else:
-		#out = open('/cap1/emily.josephs/ase/results/'+_args.date+'/eqtl.ase.out.all','w')
-		#out = open('/cap2/emily.josephs/ase/results/'+_args.date+'/eqtl.ase.out.all','w')
-		out = open('/cap2/emily.josephs/ase/results/'+_args.date+'/'+_args.outfile,'w')
+		out = open(_args.outfile,'w')
 	out.write('scaf pac     locus   N.eqtl	N.ase	af1    maf	ase_hom	ase_het    h.ase       p.ase	hom1_mean	het_mean	hom2_mean	h.eqtl	p.eqtl')
 	if _args.category_sizes:
 		out.write("	hom1	hom2	het	hom")
