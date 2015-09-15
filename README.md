@@ -1,8 +1,6 @@
 # eQTL
 
-These are scripts for running a local eQTL analysis. 
-
-I am still in the process of cleaning up and writing READMEs.
+These are scripts for running a local eQTL and aseQTL analysis. 
 
 The main idea is that you want to keep these scripts in a bin folder and create a "data" folder and a "results" folder adjacent to your scripts folder. Inside the results folder, mmake specific folders for each run -- I do this using dates.
 
@@ -39,56 +37,6 @@ They should look like this:
 
 note that hom1 is the reference homozygote
 
-## Running an eQTL analysis: eQTL_kw_hets.py
-
-This script can either run a basic eQTL analysis OR permute your data randomly and then run an eQTL analysis.
-
-### regular eQTL usage
-
-> python eQTL_kw_hets.py [expression file] [date] ht [genotype file directory] 0
-
-the expression file is just a flat file table with your genotypes as columns and genes as rows. For example:
-
->pac     161A    163J    16A     80G     81J     83Z
-
->20885617        0.0551181102362 0.105263157895  0.112676056338  0.0809248554913 0.0901639344262 
-
->20885618        14.7244094488   7.00877192982   8.04929577465   9.53179190751   7.03278688525   
-
-
-instead of date, you can use the folder name within your results folder that you would like your output file to be written in
-
-### permuted eQTL usage
-
-> python eQTL_kw_hets.py [exp file] [date] permuteAll [genotype file directory] [n]
-
-before you run, create a folder called permute in the results folder for these outputs to be written to
-
-n is the number of the permutation that you are running 
-
-this script will output results from all tests. If you would like to save space by only outputting results that are below a certain significance threshold, create a text file in the dated results folder called cutOff with your cutoff value in it and run:
-
-> python eQTL_kw_hets.py [exp file] [date] permute [genotype file directory] [n]
-
-
-### output
-
-the output files will be tables where each line is a test between SNP and gene expression the fields are:
-
-1. scaffold
-2. gene name
-3. SNP/locus that was tested
-4. frequency of the reference allele
-5. minor, or folded, allele frequency
-6. U statistic
-7. P value
-8. mean expression level of reference homozygote
-9. mean expression of heterozygote
-10. mean expression of alternate homozygote
-11. frequencies of each genotype
-12. hardy-weinberg deviation p value
-
-
 
 ## quantifying allele-specific expression with aseValuesByGene.py
 
@@ -104,40 +52,17 @@ the list of median expression levels is used to normalize the output by sequenci
 ### Output
 The output is a table where each row is a gene and each column is an individual and the values are allele-specific expression. 
 
-## mapping QTLs for allele-specific expression using aseQTL.py
 
-### Regular Usage
+## Running eQTL and aseQTL analyses
 
-> python aseQtl.py [ase file] [date] [genotype file directory] 0 [ttest/utest]
+I am still in the process of writing a ReadMe for this. If you would like help:
+> python allqtls.py -h
 
-ase file is the output from aseValuesByGene.py
-genotype directory is the directory with all your genotype files made with make_snps_files.py (can be the same as with eQTL_kw_hets.py)
-ttest/utest lets you choose whether to use parametric stats (ttest) or nonparametric stats (utest -- this is recommended)
 
-instead of date you can use the name of the folder in your results directory that you would like your output to be written to
 
-### Permutations
 
-> python aseQtl.py [ase file] [date] [genotype file directory] [n] [ttest/utest]
 
-before you run this, create a folder named "permute" in your results ('date') folder.
-n is the number of the permutation that you are running
 
-This script will only output results that have a p value less than a certain value that you must specific in a file called "cutOff" in your date/results folder.
 
-### Output
-
-The output file will be a table where each line has information for an association test between SNP genotype and allele-specific expression. The fields are:
-
-1. scaffold	
-2. gene name	
-3. SNP/locus that was tested	
-4. sample size of the test (this will vary btw tests)
-5. frequency of the reference allele	
-6. frequency of the minor allele	
-7. mean ase value of homozygotes for the SNP
-8. mean ase value of heterzygotes for the SNP
-9. t or u value
-10. p value
 
 
