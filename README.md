@@ -54,10 +54,39 @@ The output is a table where each row is a gene and each column is an individual 
 
 
 ## Running eQTL and aseQTL analyses
+This combined script will run both eQTL and aseQTL analysis on a set of snp files (generated above). 
 
-I am still in the process of writing a ReadMe for this. If you would like help:
+Basic usage is:
+> python allqtl.py -e [EXP_FILE] -a [ASE_FILE] -s [SNP DIRECTORY] -s [OUTPUT FILE]
+
+If you would like to permute the data randomly
+
+> python allqtl.py -e [EXP_FILE] -a [ASE_FILE] -s [SNP DIRECTORY] -s [OUTPUT FILE] -p -n [PERMUTATION NUMBER]
+
+To subsample so that analyses are run on samples of 50 individuals (10 and 40 in each category).
+
+> python allqtl.py -e [EXP_FILE] -a [ASE_FILE] -s [SNP DIRECTORY] -s [OUTPUT FILE] -x
+
+To see all options:
 > python allqtls.py -h
 
+The output is a table with information for each snp. The columns are
+scaf: scaffold name 
+pac: gene name     
+locus: SNP location   
+N.eqtl: The number of individuals that could be tested for eQTLs	
+N.ase: The number of individuals that could be tested for aseQTL	
+af1: Frequency of the reference allele    
+maf: Frequency of the minor allele	
+ase_hom: Mean ASE of homozygotes for the SNP	
+ase_het: Mean ase for heterozygotes for the snp    
+h.ase: Mann-Witney statistic for aseQTL test       
+p.ase: P value for aseQTL test	
+hom1_mean: Mean expression of individuals homozygous for reference allele	
+het_mean: Mean expression of individuals heterozygous at SNP	
+hom2_mean: Mean expression of individuals homozygous for alternate allele	
+h.eqtl: Mann-Whitney statistic for eQTL test	
+p.eqtl: P value for eQTL test
 
 
 
