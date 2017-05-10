@@ -33,9 +33,6 @@ for record in rna_reader:
 			aseDict[record.CHROM][i] = []	
 
 	for ind in dnaDict[(record.CHROM,record.POS)]: #read through inds with het genotypes
-		#is this ind in our 99 samples?
-		if ind not in nameDict.keys():
-			continue
 		
 		if ind not in aseDict[record.CHROM].keys():
 			aseDict[record.CHROM][ind] = [] #add gene to aseDict keys if not there already
@@ -44,7 +41,7 @@ for record in rna_reader:
 		except:
 			print(ind)
 			print(record)
-			print(record.samples
+			print(record.samples)
 			print('')  #want to make sure I'm not missing cases of complete ASE
 			continue
 		if ad == None: #missing data
